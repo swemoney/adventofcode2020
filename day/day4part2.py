@@ -4,12 +4,9 @@ from dataclasses import dataclass
 import re
 
 PASSPORT_FIELDS = {
-    "byr": "birth_year",
-    "iyr": "issue_year",
-    "eyr": "expire_year",
-    "hgt": "height",
-    "ecl": "eye_color",
-    "hcl": "hair_color",
+    "byr": "birth_year", "iyr": "issue_year",
+    "eyr": "expire_year", "hgt": "height",
+    "ecl": "eye_color", "hcl": "hair_color",
     "pid": "passport_id",
     "cid": "country_id"}
 
@@ -26,7 +23,6 @@ class Passport:
     def is_valid(self):
         for key in vars(self):
             if getattr(self, f"{key}_valid")() == False:
-                print(f"Validation Failed: {key} = {getattr(self, key)}")
                 return False
         return True
 
@@ -70,7 +66,7 @@ class Passport:
         return True
 
     def passport_id_valid(self):
-        passport_id_match = re.search(r"[0-9]{9}", self.passport_id)
+        passport_id_match = re.search(r"^[0-9]{9}$", self.passport_id)
         return passport_id_match != None
 
     def country_id_valid(self):
@@ -110,4 +106,3 @@ class Day4Part2:
                 passport_data = []
                 i += 1
         return passports
-    
