@@ -1,3 +1,3 @@
 from puzzle import Puzzle
 
-Puzzle(16,2).run()
+Puzzle(17,1).run()
